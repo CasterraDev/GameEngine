@@ -1,0 +1,202 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_IMPORT",
+      "-Iengine/src",
+      "-Itestbed/src",
+      "-o",
+      "obj/testbed/src/entry.c.o",
+      "testbed/src/entry.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/testbed/src/entry.c",
+    "output": "/home/cas/GameEngine/src/obj/testbed/src/entry.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/platform/filesystem.c.o",
+      "engine/src/platform/filesystem.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/platform/filesystem.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/platform/filesystem.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/platform/linux/platformLinux.c.o",
+      "engine/src/platform/linux/platformLinux.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/platform/linux/platformLinux.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/platform/linux/platformLinux.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/helpers/freelist.c.o",
+      "engine/src/helpers/freelist.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/helpers/freelist.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/helpers/freelist.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/helpers/dinoarray.c.o",
+      "engine/src/helpers/dinoarray.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/helpers/dinoarray.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/helpers/dinoarray.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/core/dynamicAllocator.c.o",
+      "engine/src/core/dynamicAllocator.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/core/dynamicAllocator.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/core/dynamicAllocator.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/core/event.c.o",
+      "engine/src/core/event.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/core/event.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/core/event.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/core/logger.c.o",
+      "engine/src/core/logger.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/core/logger.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/core/logger.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/core/fmemory.c.o",
+      "engine/src/core/fmemory.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/core/fmemory.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/core/fmemory.c.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/clang",
+      "-g",
+      "-Werror=vla",
+      "-fPIC",
+      "-fdeclspec",
+      "-c",
+      "-D_DEBUG",
+      "-DGE_EXPORT",
+      "-Iengine/src",
+      "-I/home/cas/vulkanSDK/1.4.304.1/x86_64/include",
+      "-o",
+      "obj/engine/src/core/input.c.o",
+      "engine/src/core/input.c"
+    ],
+    "directory": "/home/cas/GameEngine/src",
+    "file": "/home/cas/GameEngine/src/engine/src/core/input.c",
+    "output": "/home/cas/GameEngine/src/obj/engine/src/core/input.c.o"
+  }
+]
