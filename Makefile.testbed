@@ -1,0 +1,64 @@
+BUILD_DIR := bin
+OBJ_DIR := obj
+
+ASSEMBLY := testbed
+EXTENSION := 
+COMPILER_FLAGS := -g -MD -Werror=vla -fPIC -fdeclspec
+INCLUDE_FLAGS := -Iengine/src -Itestbed/src 
+LINKER_FLAGS := -L./$(BUILD_DIR)/ -lengine -Wl,-rpath,.
+DEFINES := -D_DEBUG -DGE_IMPORT
+
+# Grab the files needed using wildcards
+SRC_FILES := $(shell find $(ASSEMBLY) -name *.c)		# .c files
+DIRECTORIES := $(shell find $(ASSEMBLY) -type d)		# directories with .h files
+OBJ_FILES := $(SRC_FILES:%=$(OBJ_DIR)/%.o)		# compiled .o objects
+
+# On linux I need to use a command called bear to compile the compile_commands.json
+# This let's me use bear without interferring with anyone else's compile commands
+PREFIX := $(prefix)
+
+all: build
+
+.PHONY: build
+build: scaffold compile link
+
+# Create build directory
+.PHONY: scaffold
+scaffold:
+	@echo Scaffolding folder structure...
+	@mkdir -p $(BUILD_DIR)/
+	@mkdir -p $(addprefix $(OBJ_DIR)/,$(DIRECTORIES))
+	@echo Done.
+
+.PHONY: link
+link: scaffold $(OBJ_FILES)
+	@echo Linking $(ASSEMBLY)...
+	@clang $(OBJ_FILES) -o $(BUILD_DIR)/$(ASSEMBLY)$(EXTENSION) $(LINKER_FLAGS)
+
+# Compile always happens
+.PHONY: compile
+compile:
+	@echo Compiling...
+
+ # Clean build directory
+.PHONY: clean
+clean:
+	rm -rf $(BUILD_DIR)/$(ASSEMBLY)
+	rm -rf $(OBJ_DIR)/$(ASSEMBLY)
+	rm -rf $(BUILD_DIR)/lib$(ASSEMBLY)$(EXTENSION)
+	rm -rf compile_commands.json
+
+.PHONY: run
+run:
+	cd ./bin; ./testbed
+
+.PHONY: buildrun
+buildrun: build run
+
+# Compile c files into .o
+$(OBJ_DIR)/%.c.o: %.c
+	@echo   $<...
+	@$(PREFIX) clang $< $(COMPILER_FLAGS) -c -o $@ $(DEFINES) $(INCLUDE_FLAGS)
+
+# Make sure to include all .o & .d files when compiling
+-include $(OBJ_FILES:.o=.d)

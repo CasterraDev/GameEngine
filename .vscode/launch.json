@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch debugger",
+            "type": "codelldb",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/src/bin/",
+            "program": "${workspaceFolder}/src/bin/testbed"
+        }
+    ]
+}
