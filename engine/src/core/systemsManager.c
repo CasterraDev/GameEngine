@@ -27,8 +27,6 @@ b8 systemsInit(SystemsInfo* si) {
         fmalloc(si->systemMemReqPlatform, MEMORY_TAG_SYSTEM);
     platformInit(&si->systemMemReqPlatform, si->systemMemBlockPlatform);
 
-    // Might want to move this to engine.c
-    platformStartup("Triangle", 0, 0, 50 * 16, 50 * 9);
     return true;
 }
 

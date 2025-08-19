@@ -24,6 +24,8 @@ b8 engineStart(GameInfo* gameInfo) {
 
     systemsInit(&systemPtr->systemsInfo);
 
+    platformStartup(gameInfo->appName, gameInfo->x, gameInfo->y, gameInfo->width, gameInfo->height);
+
     printMemoryUsage();
     systemPtr->isRunning = true;
 

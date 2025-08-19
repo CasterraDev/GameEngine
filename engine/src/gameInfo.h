@@ -2,6 +2,11 @@
 #include "defines.h"
 
 typedef struct GameInfo {
+    char* appName;
+    i32 x;
+    i32 y;
+    i32 width;
+    i32 height;
 
     b8 (*init)(struct GameInfo* game_inst);
 
