@@ -6,8 +6,8 @@
  * Abstract layer for common platform calls
  */
 
-b8 platformStartup(u64* memoryRequirement, void* state, const char* appName,
-                   i32 x, i32 y, i32 width, i32 height);
+b8 platformInit(u64* memoryRequirement, void* state);
+b8 platformStartup(const char* appName, i32 x, i32 y, i32 width, i32 height);
 
 void platformShutdown();
 

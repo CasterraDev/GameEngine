@@ -54,14 +54,19 @@ static void testCookie(xcb_void_cookie_t cookie, xcb_connection_t* connection,
     }
 }
 
-b8 platformStartup(u64* memoryRequirement, void* state, const char* appName,
-                   i32 x, i32 y, i32 width, i32 height) {
+b8 platformInit(u64* memoryRequirement, void* state) {
     *memoryRequirement = sizeof(platformState);
     if (state == 0) {
         return true;
     }
     systemPtr = state;
+    return true;
+}
 
+b8 platformStartup(const char* appName, i32 x, i32 y, i32 width, i32 height) {
+    if (!systemPtr) {
+        FERROR("platformStartup called before platform system was inited")
+    }
     // Open a connection to the X server
     // passing NULL will make it grab the default screen using the DISPLAY env
     // variable
@@ -165,11 +170,17 @@ b8 platformStartup(u64* memoryRequirement, void* state, const char* appName,
 }
 
 void platformShutdown() {
-    // Turn key repeats back on
-    // This is global for linux. Which is ... weird
-    // XAutoRepeatOn(systemPtr->display);
+    if (systemPtr) {
+        // If connection is there display & window should also be made
+        if (systemPtr->connection) {
+            // Turn key repeats back on
+            // This is global for linux. Which is ... weird
+            // XAutoRepeatOn(systemPtr->display);
 
-    xcb_destroy_window(systemPtr->connection, systemPtr->window);
+            xcb_destroy_window(systemPtr->connection, systemPtr->window);
+        }
+        systemPtr = 0;
+    }
 }
 
 b8 platformPumpMessages() {

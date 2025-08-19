@@ -5,37 +5,34 @@
 #include "core/systems/logger.h"
 #include "platform/platform.h"
 
-b8 systemsInit(SystemsInfo* si){
+b8 systemsInit(SystemsInfo* si) {
     eventInit(&si->systemMemReqEvent, 0);
-    si->systemMemBlockEvent =
-        fmalloc(si->systemMemReqEvent, MEMORY_TAG_SYSTEM);
+    si->systemMemBlockEvent = fmalloc(si->systemMemReqEvent, MEMORY_TAG_SYSTEM);
     eventInit(&si->systemMemReqEvent, si->systemMemBlockEvent);
 
     loggerInit(&si->systemMemReqLogging, 0);
     si->systemMemBlockLogging =
         fmalloc(si->systemMemReqLogging, MEMORY_TAG_SYSTEM);
-    loggerInit(&si->systemMemReqLogging,
-               si->systemMemBlockLogging);
+    loggerInit(&si->systemMemReqLogging, si->systemMemBlockLogging);
 
     inputInit(&si->systemMemReqInput, 0);
-    si->systemMemBlockInput =
-        fmalloc(si->systemMemReqInput, MEMORY_TAG_SYSTEM);
+    si->systemMemBlockInput = fmalloc(si->systemMemReqInput, MEMORY_TAG_SYSTEM);
     inputInit(&si->systemMemReqInput, si->systemMemBlockInput);
 
     // TODO: Register program events. (Resize, Buttons)
 
     FINFO("Starting platform")
-    platformStartup(&si->systemMemReqPlatform, 0, "Triangle", 0, 0,
-                    50 * 16, 50 * 9);
+    platformInit(&si->systemMemReqPlatform, 0);
     si->systemMemBlockPlatform =
         fmalloc(si->systemMemReqPlatform, MEMORY_TAG_SYSTEM);
-    platformStartup(&si->systemMemReqPlatform,
-                    si->systemMemBlockPlatform, "Triangle", 0, 0,
-                    50 * 16, 50 * 9);
+    platformInit(&si->systemMemReqPlatform, si->systemMemBlockPlatform);
+
+    // Might want to move this to engine.c
+    platformStartup("Triangle", 0, 0, 50 * 16, 50 * 9);
     return true;
 }
 
-b8 systemsShutdown(SystemsInfo* si){
+b8 systemsShutdown(SystemsInfo* si) {
     platformShutdown();
     inputShutdown(si->systemMemBlockInput);
     loggerShutdown();
