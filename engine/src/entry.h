@@ -18,7 +18,12 @@ int main(int argc, char* argv[]) {
     }
 
     if (!engineRun(&gameInfo)) {
-        FFATAL("Failed to start engine.");
+        FFATAL("Failed to run engine.");
+        return -1;
+    }
+
+    if (!engineDestroy(&gameInfo)) {
+        FFATAL("Failed to destroy engine.");
         return -1;
     }
 
