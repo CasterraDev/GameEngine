@@ -43,5 +43,6 @@ b8 engineRun(GameInfo* gameInfo) {
 
 b8 engineDestroy(GameInfo* gameInfo) {
     systemsShutdown(&systemPtr->systemsInfo);
+    memoryShutdown();
     return true;
 }
