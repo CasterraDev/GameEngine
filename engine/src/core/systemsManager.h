@@ -14,6 +14,9 @@ typedef struct SystemsInfo {
 
     u64 systemMemReqInput;
     void* systemMemBlockInput;
+
+    u64 systemMemReqRenderer;
+    void* systemMemBlockRenderer;
 } SystemsInfo;
 
 b8 systemsInit(SystemsInfo* si);

@@ -28,9 +28,11 @@ b8 rendererInit(u64* memoryRequirement, void* state, RendererType type) {
     }
     
     systemPtr = state;
+    systemPtr->type = type;
 
     setFNs(type);
 
+    FINFO("Starting Renderer");
     if (!systemPtr->packet.rendererInit()){
         FWARN("Renderer failed to Init");
         return false;

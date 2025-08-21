@@ -2,6 +2,8 @@
 
 #include "defines.h"
 
+typedef enum RendererType { RENDERER_TYPE_VULKAN } RendererType;
+
 typedef struct RenderPacket {
     b8 (*rendererInit)();
     b8 (*rendererDestroy)();

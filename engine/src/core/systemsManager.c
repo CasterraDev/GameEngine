@@ -4,6 +4,8 @@
 #include "core/systems/input.h"
 #include "core/systems/logger.h"
 #include "platform/platform.h"
+#include "renderer/renderer.h"
+#include "renderer/renderInfo.h"
 
 b8 systemsInit(SystemsInfo* si) {
     eventInit(&si->systemMemReqEvent, 0);
@@ -27,10 +29,17 @@ b8 systemsInit(SystemsInfo* si) {
         fmalloc(si->systemMemReqPlatform, MEMORY_TAG_SYSTEM);
     platformInit(&si->systemMemReqPlatform, si->systemMemBlockPlatform);
 
+    rendererInit(&si->systemMemReqRenderer, 0, RENDERER_TYPE_VULKAN);
+    si->systemMemBlockRenderer =
+        fmalloc(si->systemMemReqRenderer, MEMORY_TAG_SYSTEM);
+    rendererInit(&si->systemMemReqRenderer, si->systemMemBlockRenderer, RENDERER_TYPE_VULKAN);
+
     return true;
 }
 
 b8 systemsShutdown(SystemsInfo* si) {
+    FINFO("Starting Engine Shutdown");
+    rendererShutdown(si->systemMemBlockRenderer);
     platformShutdown();
     inputShutdown(si->systemMemBlockInput);
     loggerShutdown();

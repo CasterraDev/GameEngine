@@ -5,8 +5,8 @@
             "name": "Launch debugger",
             "type": "codelldb",
             "request": "launch",
-            "cwd": "${workspaceFolder}/src/bin/",
-            "program": "${workspaceFolder}/src/bin/testbed"
+            "cwd": "${workspaceFolder}/bin/",
+            "program": "${workspaceFolder}/bin/testbed"
         }
     ]
 }

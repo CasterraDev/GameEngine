@@ -1,6 +1,7 @@
 #pragma once
 
 #include "defines.h"
+#include "helpers/dinoarray.h"
 
 /*
  * Abstract layer for common platform calls
@@ -22,7 +23,9 @@ void* platformSetMemory(void* dest, i32 val, u64 size);
 void platformConsoleWrite(const char* msg, u8 color);
 void platformConsoleWriteError(
     const char* msg,
-    u8 color); // Incase the error writing goes to a different funciton.
+    u8 color); // Incase the error writing goes to a different function.
+
+void platformGetRequiredExtenstions(const DinoString* dinoStrings);
 
 f64 platformGetAbsoluteTime();
 

@@ -1,3 +1,4 @@
+#include "helpers/dinoarray.h"
 #include "platform/platform.h"
 
 // Linux platform.
@@ -181,6 +182,10 @@ void platformShutdown() {
         }
         systemPtr = 0;
     }
+}
+
+void platformGetRequiredExtenstions(const char*** dinoStrings) {
+    dinoPush(*dinoStrings, &"VK_KHR_xcb_surface");
 }
 
 b8 platformPumpMessages() {
