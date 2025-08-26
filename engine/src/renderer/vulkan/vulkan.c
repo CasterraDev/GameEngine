@@ -82,6 +82,10 @@ b8 vulkanInit() {
 }
 
 b8 vulkanDestroy() {
+    if (vulkanInfo.device.device){
+        vkDestroyDevice(vulkanInfo.device.device, vulkanInfo.allocator);
+        vulkanInfo.device.device = 0;
+    }
 #ifdef _DEBUG
     DestroyDebugUtilsMessengerEXT(
         vulkanInfo.instance, vulkanInfo.debugMessenger, vulkanInfo.allocator);
@@ -114,8 +118,8 @@ void createInstance() {
 #ifdef _DEBUG
     dinoPush(dinoExtStrings, &VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
 
-    const char** validationLayers = dinoCreate(const char*);
-    dinoPush(validationLayers, &"VK_LAYER_KHRONOS_validation");
+    vulkanInfo.validationLayers = dinoCreate(const char*);
+    dinoPush(vulkanInfo.validationLayers, &"VK_LAYER_KHRONOS_validation");
 
     u32 layerCount;
     vkEnumerateInstanceLayerProperties(&layerCount, 0);
@@ -124,13 +128,13 @@ void createInstance() {
         dinoCreateReserveWithLengthSet(layerCount, VkLayerProperties);
     vkEnumerateInstanceLayerProperties(&layerCount, availableLayers);
 
-    for (u32 i = 0; i < dinoLength(validationLayers); i++) {
+    for (u32 i = 0; i < dinoLength(vulkanInfo.validationLayers); i++) {
         b8 layerFound = false;
-        FDEBUG("Validation Layer: %s", validationLayers[i]);
+        FDEBUG("Validation Layer: %s", vulkanInfo.validationLayers[i]);
 
         for (u32 x = 0; x < dinoLength(availableLayers); x++) {
             // FDEBUG("Available Layer: %s", availableLayers[i]);
-            if (strcmp(validationLayers[i], availableLayers[x].layerName) ==
+            if (strcmp(vulkanInfo.validationLayers[i], availableLayers[x].layerName) ==
                 0) {
                 FDEBUG("Found");
                 layerFound = true;
@@ -143,8 +147,8 @@ void createInstance() {
         }
     }
 
-    createInfo.enabledLayerCount = dinoLength(validationLayers);
-    createInfo.ppEnabledLayerNames = validationLayers;
+    createInfo.enabledLayerCount = dinoLength(vulkanInfo.validationLayers);
+    createInfo.ppEnabledLayerNames = vulkanInfo.validationLayers;
 
     VkDebugUtilsMessengerCreateInfoEXT instanceDebugCI;
     populateDebugMessengerCreateInfo(&instanceDebugCI);

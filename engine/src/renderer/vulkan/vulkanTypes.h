@@ -8,11 +8,21 @@
         FASSERT(expr == VK_SUCCESS);                                           \
     }
 
+typedef struct VulkanDevice {
+    VkPhysicalDevice physicalDevice;
+    VkDevice device;
+    u32 graphicsFamily;
+    VkQueue graphicsQueue;
+} VulkanDevice;
+
 typedef struct VulkanInfo {
     VkInstance instance;
     VkAllocationCallbacks* allocator;
+    VulkanDevice device;
     u32 deltaTime;
     VkDebugUtilsMessengerEXT debugMessenger;
+    // DinoArray
+    const char** validationLayers;
     // VulkanDevice device;
     VkSurfaceKHR surface;
     // VulkanSwapchain swapchain;
